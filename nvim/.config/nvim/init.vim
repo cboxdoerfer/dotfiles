@@ -21,6 +21,7 @@ Plug 'arakashic/chromatica.nvim'
 Plug 'airblade/vim-gitgutter'
 Plug 'rust-lang/rust.vim'
 Plug 'timonv/vim-cargo'
+Plug 'neovimhaskell/haskell-vim'
 
 "Plug 'majutsushi/tagbar'
 
