@@ -1,0 +1,22 @@
+[push]
+    default = current
+[color]
+    ui = auto
+[user]
+    email = christian.boxdoerfer@posteo.de
+    name = Christian Boxdörfer
+[alias]
+    lg = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)'
+    br = branch -v
+    co = checkout
+    st = status
+    d = difftool
+    ls = ls-files
+    history = log --stat --patch --
+[diff]
+    tool = vimdiff
+[difftool]
+    prompt = false
+[core]
+	excludesfile = /home/christian/.config/git/ignore
+    editor = vim
