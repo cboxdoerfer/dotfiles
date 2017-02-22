@@ -1,0 +1,36 @@
+.window-frame {
+    box-shadow: none;
+    margin: 0;
+}
+
+paned {
+    border-width: 0
+}
+
+tooltip {
+    border-radius: 0px;
+}
+
+tooltip * {
+    padding: 0px;
+}
+
+treeview.view:hover:not(:selected) {
+    background-color: shade(#ffffff, 0.9);
+}
+
+.nautilus-list-view .view {
+    border-bottom: none;
+}
+
+/*
+notebook tabs {
+    padding: 0px 1px 0px 1px;
+}
+
+notebook tab {
+    padding: 0px 2px 0px 2px;
+    margin-left: 0px;
+    margin-right: 0px;
+}
+*/
