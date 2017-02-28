@@ -55,7 +55,7 @@ myManageHook = scratchpadManageHook (W.RationalRect 0.2 0 0.6 0.5) <+> composeAl
 myTerminal    = "gnome-terminal"
 myEditor      = "nvim-wrapper"
 myModMask     = mod4Mask -- Win key or Super_L
-myBorderWidth = 1
+myBorderWidth = 2
 myBorderColorNormal = "#586e75"
 myBorderColorFocused = "#b58900"
 
