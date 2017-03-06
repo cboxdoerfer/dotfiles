@@ -38,7 +38,7 @@ blue    = "#268bd2"
 cyan    = "#2aa198"
 green = "#859900"
 
-myLayoutHook = avoidStruts $ smartSpacing 4 $ smartBorders $ (tiled ||| Accordion ||| Full)
+myLayoutHook = avoidStruts $ smartSpacing 4 $ smartBorders (tiled ||| Accordion ||| Full)
     where
         tiled = Tall 1 (3/100) (3/5)
 
@@ -65,7 +65,7 @@ myWorkspaces = ["GEN", "WEB", "DEV", "MAIL", "AV"] ++ map show [6..9]
 --
 -- (The comment formatting character is used when generating the manpage)
 --
-myKeybindings conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
+myKeybindings conf@XConfig {XMonad.modMask = modMask} = M.fromList $
     -- launching and killing programs
     [ ((modMask,               xK_Return), spawn $ XMonad.terminal conf) -- %! Launch terminal
     , ((modMask .|. shiftMask, xK_Return), spawn myEditor) -- %! Launch editor
@@ -108,7 +108,7 @@ myKeybindings conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
     , ((modMask              , xK_period), sendMessage (IncMasterN (-1))) -- %! Deincrement the number of windows in the master area
 
     -- quit, or restart
-    , ((modMask .|. shiftMask, xK_q     ), io (exitWith ExitSuccess)) -- %! Quit xmonad
+    , ((modMask .|. shiftMask, xK_q     ), io exitSuccess) -- %! Quit xmonad
     , ((modMask              , xK_q     ), spawn "if type xmonad; then xmonad --recompile && xmonad --restart; else xmessage xmonad not in \\$PATH: \"$PATH\"; fi") -- %! Restart xmonad
     ]
     ++

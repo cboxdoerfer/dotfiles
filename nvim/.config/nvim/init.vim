@@ -22,6 +22,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'rust-lang/rust.vim'
 Plug 'timonv/vim-cargo'
 Plug 'neovimhaskell/haskell-vim'
+Plug 'jceb/vim-orgmode'
 
 "Plug 'majutsushi/tagbar'
 
