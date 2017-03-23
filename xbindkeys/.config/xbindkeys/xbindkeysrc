@@ -42,6 +42,18 @@
 "touchpad_toggle.sh"
   XF86TouchpadToggle
 
+# Increase volume
+"pamixer --increase 5"
+   XF86AudioRaiseVolume
+
+# Decrease volume
+"pamixer --decrease 5"
+   XF86AudioLowerVolume
+
+# Toggle mute
+"pamixer --toggle-mute"
+   XF86AudioMute
+
 #"xterm -geom 50x20+20+20"
 #   Shift+Mod2+alt + s
 #

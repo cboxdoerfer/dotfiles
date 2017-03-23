@@ -48,7 +48,7 @@ case $DEFAULT_SESSION in
 xmonad)
     xmonad-set-wallpaper.sh &
     xmonad-autostart.sh &
-    xmonad-bar.sh &
+    #xmonad-bar.sh &
     exec xmonad
     ;;
 awesome)

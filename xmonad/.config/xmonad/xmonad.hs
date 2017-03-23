@@ -7,9 +7,11 @@ import XMonad.Layout.Accordion
 import XMonad.Layout.NoBorders
 import XMonad.Layout.Spacing
 
+import XMonad.Actions.FloatKeys
 import XMonad.Actions.NoBorders
 import XMonad.Actions.WindowGo
 import XMonad.Actions.CycleWS
+import XMonad.Actions.CopyWindow
 
 import XMonad.Util.Run(spawnPipe)
 import XMonad.Util.Scratchpad
@@ -95,6 +97,17 @@ myKeybindings conf@XConfig {XMonad.modMask = modMask} = M.fromList $
     , ((modMask,               xK_s     ), windows W.swapMaster) -- %! Swap the focused window and the master window
     , ((modMask .|. shiftMask, xK_j     ), windows W.swapDown  ) -- %! Swap the focused window with the next window
     , ((modMask .|. shiftMask, xK_k     ), windows W.swapUp    ) -- %! Swap the focused window with the previous window
+
+    -- copy windows
+    , ((modMask, xK_v                   ), windows copyToAll) -- @@ Make focused window always visible
+    , ((modMask .|. shiftMask, xK_v     ),  killAllOtherCopies) -- @@ Toggle window state back
+
+    -- move float windows
+    , ((modMask,                 xK_Up ), withFocused (keysMoveWindowTo (12,12) (0,0)))
+    , ((modMask,               xK_Down ), withFocused (keysMoveWindowTo (1600 - 15, 900 - 37) (1,1)))
+    , ((modMask,              xK_Right ), withFocused (keysMoveWindowTo (1600 - 15,12) (1,0)))
+    , ((modMask,               xK_Left ), withFocused (keysMoveWindowTo (12, 900 - 37) (0,1)))
+
 
     -- resizing the master/slave ratio
     , ((modMask,               xK_h     ), sendMessage Shrink) -- %! Shrink the master area
