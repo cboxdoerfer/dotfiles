@@ -43,15 +43,15 @@
   XF86TouchpadToggle
 
 # Increase volume
-"pamixer --increase 5"
+"volume_increase.sh"
    XF86AudioRaiseVolume
 
 # Decrease volume
-"pamixer --decrease 5"
+"volume_lower.sh"
    XF86AudioLowerVolume
 
 # Toggle mute
-"pamixer --toggle-mute"
+"volume_toggle_mute.sh"
    XF86AudioMute
 
 #"xterm -geom 50x20+20+20"
