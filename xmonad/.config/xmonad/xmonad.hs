@@ -15,6 +15,7 @@ import XMonad.Actions.CopyWindow
 
 import XMonad.Util.Run(spawnPipe)
 import XMonad.Util.Scratchpad
+import XMonad.Util.NamedScratchpad
 
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
@@ -40,22 +41,31 @@ blue    = "#268bd2"
 cyan    = "#2aa198"
 green = "#859900"
 
-myLayoutHook = avoidStruts $ smartSpacing 4 $ smartBorders (tiled ||| Accordion ||| Full)
+myScratchpads = [
+    NS "terminal" "st -n terminal_scratchpad -e tmux -2 attach" (resource =? "terminal_scratchpad") myFloating ,
+    NS "pdf" "zathura" (resource =? "zathura") pdfFloating ,
+    NS "fsearch" "fsearch --name fsearch_scratchpad" (resource =? "fsearch_scratchpad") myFloating
+                ] 
+                    where myFloating = customFloating $ W.RationalRect (1/6) 0 (2/3) (2/3)
+                          pdfFloating = customFloating $ W.RationalRect (17/32) (1/18) (14/32) (16/18)
+
+myLayoutHook = avoidStruts $ smartSpacing 8 $ smartBorders (tiled ||| Accordion ||| Full)
     where
         tiled = Tall 1 (3/100) (3/5)
 
-myManageHook = scratchpadManageHook (W.RationalRect 0.2 0 0.6 0.5) <+> composeAll
+myManageHook = namedScratchpadManageHook myScratchpads <+> composeAll
     [
         className =? "Firefox" --> doShift "WEB"
         , className =? "DeaDBeeF" --> doShift "AV"
         , className =? "Thunderbird" --> doShift "MAIL"
         , className =? "lxqt-openssh-askpass" --> doFloat
+        , className =? "mpv" --> doFloat
         , title =? "Python Turtle Graphics" --> doFloat
         , manageDocks
     ]
 
 myTerminal    = "gnome-terminal"
-myEditor      = "nvim-wrapper"
+myEditor      = "st -e nvim"
 myModMask     = mod4Mask -- Win key or Super_L
 myBorderWidth = 2
 myBorderColorNormal = "#586e75"
@@ -73,7 +83,9 @@ myKeybindings conf@XConfig {XMonad.modMask = modMask} = M.fromList $
     , ((modMask .|. shiftMask, xK_Return), spawn myEditor) -- %! Launch editor
     , ((modMask,               xK_p     ), spawn "rofi -show drun") -- %! Launch rofi
     , ((modMask .|. shiftMask, xK_p     ), spawn "rofi -show run") -- %! Launch rofi
-    , ((modMask,               xK_f     ), runOrRaiseMaster "fsearch" (className =? "fsearch")) -- %! Launch fsearch
+    --, ((modMask,               xK_f     ), runOrRaiseMaster "fsearch" (className =? "Fsearch")) -- %! Launch fsearch
+    , ((modMask,               xK_f), namedScratchpadAction myScratchpads "fsearch")
+    , ((modMask,               xK_d), namedScratchpadAction myScratchpads "pdf")
     , ((modMask .|. shiftMask, xK_c     ), kill) -- %! Close the focused window
 
     , ((modMask,               xK_space ), sendMessage NextLayout) -- %! Rotate through the available layout algorithms
@@ -83,7 +95,9 @@ myKeybindings conf@XConfig {XMonad.modMask = modMask} = M.fromList $
 
     -- Scratchpad
     --, ((modMask,               xK_minus), scratchpadSpawnAction conf)
-    , ((modMask,               xK_minus), scratchpadSpawnActionCustom "st -n scratchpad -e tmux -2 attach")
+    --, ((modMask,               xK_minus), scratchpadSpawnActionCustom "st -n scratchpad -e tmux -2 attach")
+    , ((modMask,               xK_minus), namedScratchpadAction myScratchpads "terminal")
+    , ((modMask .|. shiftMask, xK_minus), withFocused (keysMoveWindowTo (800,0) (0.5,0)))
 
     -- move focus up or down the window stack
     , ((modMask,               xK_Tab   ), windows W.focusDown) -- %! Move focus to the next window
@@ -91,7 +105,7 @@ myKeybindings conf@XConfig {XMonad.modMask = modMask} = M.fromList $
     , ((modMask,               xK_j     ), windows W.focusDown) -- %! Move focus to the next window
     , ((modMask,               xK_k     ), windows W.focusUp  ) -- %! Move focus to the previous window
     , ((modMask,               xK_m     ), windows W.focusMaster  ) -- %! Move focus to the master window
-    , ((modMask,               xK_n     ), toggleWS ) -- %! Switch to last focused worksapce
+    , ((modMask,               xK_grave ), toggleWS' ["NSP"] ) -- %! Switch to last focused worksapce
 
     -- modifying the window order
     , ((modMask,               xK_s     ), windows W.swapMaster) -- %! Swap the focused window and the master window

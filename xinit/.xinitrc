@@ -41,6 +41,7 @@ fi
 #xrandr --auto
 
 export SSH_ASKPASS=/usr/lib/seahorse/seahorse-ssh-askpass
+export XDG_CURRENT_DESKTOP=GNOME
 
 DEFAULT_SESSION=xmonad
 

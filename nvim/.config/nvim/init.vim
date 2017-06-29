@@ -9,22 +9,26 @@ Plug 'altercation/vim-colors-solarized'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+"Plug 'sebastianmarkow/deoplete-rust'
 Plug 'Yggdroot/indentLine'
 Plug 'vim-scripts/gtk-vim-syntax'
-Plug 'dag/vim-fish'
-Plug 'vim-scripts/gnuplot-syntax-highlighting'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+"Plug 'itchyny/lightline.vim'
 Plug 'neomake/neomake'
-Plug 'octol/vim-cpp-enhanced-highlight'
+"Plug 'dag/vim-fish'
+"Plug 'octol/vim-cpp-enhanced-highlight'
+"Plug 'vim-scripts/gnuplot-syntax-highlighting'
+"Plug 'rust-lang/rust.vim'
+"Plug 'neovimhaskell/haskell-vim'
 Plug 'arakashic/chromatica.nvim'
 Plug 'airblade/vim-gitgutter'
-Plug 'rust-lang/rust.vim'
 Plug 'timonv/vim-cargo'
-Plug 'neovimhaskell/haskell-vim'
 Plug 'jceb/vim-orgmode'
-
-"Plug 'majutsushi/tagbar'
+Plug 'sheerun/vim-polyglot'
+Plug 'scrooloose/nerdcommenter'
+Plug 'scrooloose/nerdtree'
+Plug 'majutsushi/tagbar'
 
 " Initialize plugin system
 call plug#end()
@@ -55,12 +59,18 @@ set undofile
 set mouse=a
 
 let g:airline_theme='solarized'
-let g:airline_powerline_fonts = 1
+let g:airline_powerline_fonts = 0
+
+"let g:lightline = {
+"            \ 'colorscheme': 'solarized',
+"            \}
 
 let g:ctrlp_types = ['mru', 'fil']
 
 " Use deoplete.
 let g:deoplete#enable_at_startup = 1
+"let g:deoplete#sources#rust#racer_binary='/usr/bin/racer'
+"let g:deoplete#sources#rust#rust_source_path='~/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/'
 
 let g:python_host_prog = '/usr/bin/python2'
 let g:python3_host_prog = '/usr/bin/python3'
@@ -69,6 +79,17 @@ let g:python3_host_prog = '/usr/bin/python3'
 let g:UltiSnipsExpandTrigger = "<tab>"
 let g:UltiSnipsJumpForwardTrigger = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+
+" Add spaces after comment delimiters by default
+let g:NERDSpaceDelims = 1
+" Use compact syntax for prettified multi-line comments
+let g:NERDCompactSexyComs = 1
+
+let g:NERDTreeDirArrowExpandable = '▸'
+let g:NERDTreeDirArrowCollapsible = '▾'
+
+let g:NERDTreeChDirMode = 2
+let g:NERDTreeIgnore=['\.vim$', '\~$', '\.o$']
 
 " Colorscheme
 set background=dark
