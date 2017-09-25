@@ -1,6 +1,6 @@
 #!/bin/sh
 
-userresources=$XDG_CONFIG_HOME/Xresources
+userresources=$HOME/.Xresources
 usermodmap=$XDG_CONFIG_HOME/Xmodmap
 userxbindkeys=$XDG_CONFIG_HOME/xbindkeys/xbindkeysrc
 sysresources=/etc/X11/xinit/.Xresources
