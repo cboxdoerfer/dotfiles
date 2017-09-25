@@ -64,7 +64,7 @@ myManageHook = namedScratchpadManageHook myScratchpads <+> composeAll
         , manageDocks
     ]
 
-myTerminal    = "gnome-terminal"
+myTerminal    = "urxvt"
 myEditor      = "st -e nvim"
 myModMask     = mod4Mask -- Win key or Super_L
 myBorderWidth = 2
@@ -79,7 +79,7 @@ myWorkspaces = ["GEN", "WEB", "DEV", "MAIL", "AV"] ++ map show [6..9]
 --
 myKeybindings conf@XConfig {XMonad.modMask = modMask} = M.fromList $
     -- launching and killing programs
-    [ ((modMask,               xK_Return), spawn $ XMonad.terminal conf) -- %! Launch terminal
+    [ ((modMask,               xK_Return), spawn myTerminal) -- %! Launch terminal
     , ((modMask .|. shiftMask, xK_Return), spawn myEditor) -- %! Launch editor
     , ((modMask,               xK_p     ), spawn "rofi -show drun") -- %! Launch rofi
     , ((modMask .|. shiftMask, xK_p     ), spawn "rofi -show run") -- %! Launch rofi
