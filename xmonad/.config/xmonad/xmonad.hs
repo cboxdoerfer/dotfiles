@@ -43,7 +43,7 @@ green = "#859900"
 
 myScratchpads = [
     NS "terminal" "st -n terminal_scratchpad -e tmux -2 attach" (resource =? "terminal_scratchpad") myFloating ,
-    NS "pdf" "zathura" (resource =? "zathura") pdfFloating ,
+    NS "pdf" "zathura --name zathura_scratchpad" (resource =? "zathura_scratchpad") pdfFloating ,
     NS "fsearch" "fsearch --name fsearch_scratchpad" (resource =? "fsearch_scratchpad") myFloating
                 ] 
                     where myFloating = customFloating $ W.RationalRect (1/6) 0 (2/3) (2/3)

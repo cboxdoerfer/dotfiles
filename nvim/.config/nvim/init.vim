@@ -7,13 +7,15 @@ Plug 'junegunn/vim-easy-align'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'altercation/vim-colors-solarized'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'zchee/deoplete-clang'
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-"Plug 'sebastianmarkow/deoplete-rust'
+Plug 'sebastianmarkow/deoplete-rust'
 Plug 'Yggdroot/indentLine'
 Plug 'vim-scripts/gtk-vim-syntax'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'tpope/vim-fugitive'
 "Plug 'itchyny/lightline.vim'
 Plug 'neomake/neomake'
 "Plug 'dag/vim-fish'
@@ -69,8 +71,10 @@ let g:ctrlp_types = ['mru', 'fil']
 
 " Use deoplete.
 let g:deoplete#enable_at_startup = 1
-"let g:deoplete#sources#rust#racer_binary='/usr/bin/racer'
-"let g:deoplete#sources#rust#rust_source_path='~/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/'
+let g:deoplete#sources#clang#libclang_path = '/usr/lib/libclang.so'
+let g:deoplete#sources#clang#clang_header = '/usr/lib/clang'
+let g:deoplete#sources#rust#racer_binary='/usr/bin/racer'
+let g:deoplete#sources#rust#rust_source_path='/home/christian/src/rust/src'
 
 let g:python_host_prog = '/usr/bin/python2'
 let g:python3_host_prog = '/usr/bin/python3'
@@ -112,5 +116,9 @@ function! SwitchBuffer()
   b#
 endfunction
 
+" disable ex mode
+nnoremap Q <Nop>
+
 nnoremap <Tab> :call SwitchBuffer()<CR>
-"nnoremap <F8> :TagbarToggle<CR>
+nnoremap <F7> :NERDTreeToggle<CR>
+nnoremap <F8> :TagbarToggle<CR>

@@ -1,14 +1,14 @@
 set fish_greeting ""
 
 # PATH
-set -gx PATH ~/.local/bin $PATH
+set -gx PATH $HOME/.local/bin $PATH
 set -gx PATH /usr/local/bin $PATH
 set -gx PATH $HOME/.cabal/bin $PATH
 
 # XDG
-set -gx XDG_CONFIG_HOME /home/christian/.config
-set -gx XDG_DATA_HOME /home/christian/.local/share
-set -gx XDG_CACHE_HOME /home/christian/.cache
+set -gx XDG_CONFIG_HOME $HOME/.config
+set -gx XDG_DATA_HOME $HOME/.local/share
+set -gx XDG_CACHE_HOME $HOME/.cache
 set -gx XDG_RUNTIME_DIR /run/user/(id -u)
 
 # tmux
